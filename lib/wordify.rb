@@ -21,41 +21,45 @@ class Fixnum
     ones.store(17,"seventeen")
     ones.store(18,"eighteen")
     ones.store(19,"nineteen")
-    ones.store(20,"twenty")
-    ones.store(30,"thirty")
-    ones.store(40, "forty")
-    ones.store(50,"fifty")
-    ones.store(60, "sixty")
-    ones.store(70, "seventy")
-    ones.store(80, "eighty")
-    ones.store(90, "ninety")
+    ones.store(20,"twenty ")
+    ones.store(30,"thirty ")
+    ones.store(40, "forty ")
+    ones.store(50,"fifty ")
+    ones.store(60, "sixty ")
+    ones.store(70, "seventy ")
+    ones.store(80, "eighty ")
+    ones.store(90, "ninety ")
 
     words = ""
     newnum = self
 
-
-
     if newnum.>(20)
 
       input_one = newnum % 10
+      input_thousand = newnum.div(1000)
+      newnum = newnum - input_thousand.*(1000)
       input_hundred = newnum.div(100)
       newnum = newnum - input_hundred.*(100)
       input_ten = newnum.div(10).*(10)
 
+      if input_thousand.>(0)
+        words.concat(ones.fetch(input_thousand))
+        words.concat(" thousand ")
+      end
+
       if input_hundred.>(0)
         words.concat(ones.fetch(input_hundred))
-        words.concat(" hundred")
+        words.concat(" hundred ")
       end
 
       words.concat(ones.fetch(input_ten))
       if input_one.>(0)
-        words.concat(" ")
         words.concat(ones.fetch(input_one))
       end
     else
       words.concat(ones.fetch(newnum))
     end
 
-    return words
+    return words.strip()
   end
 end

@@ -28,4 +28,8 @@ describe('Fixnum#wordify') do
     expect(101.wordify()).to(eq("one hundred one"))
   end
 
+  it("takes a number over 1000 and returns the words") do
+    expect(1021.wordify()).to(eq("one thousand twenty one"))
+  end
+
 end
