@@ -1,6 +1,7 @@
 class Fixnum
   define_method(:wordify) do
     ones = Hash.new()
+    ones.store(0,"")
     ones.store(1,"one")
     ones.store(2,"two")
     ones.store(3,"three")
@@ -21,15 +22,38 @@ class Fixnum
     ones.store(18,"eighteen")
     ones.store(19,"nineteen")
     ones.store(20,"twenty")
+    ones.store(30,"thirty")
+    ones.store(40, "forty")
+    ones.store(50,"fifty")
+    ones.store(60, "sixty")
+    ones.store(70, "seventy")
+    ones.store(80, "eighty")
+    ones.store(90, "ninety")
 
-    if self.>(20)
-      input_one = self % 10
-      input_ten = self.div(10).*(10)
-      words = ones.fetch(input_ten)
-      words.concat(" ")
-      words.concat(ones.fetch(input_one))
+    words = ""
+    newnum = self
+
+
+
+    if newnum.>(20)
+
+      input_one = newnum % 10
+      input_hundred = newnum.div(100)
+      newnum = newnum - input_hundred.*(100)
+      input_ten = newnum.div(10).*(10)
+
+      if input_hundred.>(0)
+        words.concat(ones.fetch(input_hundred))
+        words.concat(" hundred")
+      end
+
+      words.concat(ones.fetch(input_ten))
+      if input_one.>(0)
+        words.concat(" ")
+        words.concat(ones.fetch(input_one))
+      end
     else
-      words = ones.fetch(self)
+      words.concat(ones.fetch(newnum))
     end
 
     return words
