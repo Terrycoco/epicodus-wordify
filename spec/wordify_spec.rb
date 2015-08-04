@@ -11,4 +11,8 @@ describe('Fixnum#wordify') do
     expect(11.wordify()).to(eq("eleven"))
   end
 
+  it('takes a number above 20 and returns the word twenty and the ones digit') do
+    expect(21.wordify()).to(eq("twenty one"))
+  end
+
 end

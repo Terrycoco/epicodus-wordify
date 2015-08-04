@@ -21,7 +21,17 @@ class Fixnum
     ones.store(18,"eighteen")
     ones.store(19,"nineteen")
     ones.store(20,"twenty")
-    ones.fetch(self)
 
+    if self.>(20)
+      input_one = self % 10
+      input_ten = self.div(10).*(10)
+      words = ones.fetch(input_ten)
+      words.concat(" ")
+      words.concat(ones.fetch(input_one))
+    else
+      words = ones.fetch(self)
+    end
+
+    return words
   end
 end
